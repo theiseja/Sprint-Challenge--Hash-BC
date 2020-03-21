@@ -44,7 +44,7 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    
+
     hashed_proof = last_hash[-6:]
     guess = f'{proof}'.encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
@@ -64,10 +64,10 @@ if __name__ == '__main__':
     coins_mined = 0
 
     # Load or create ID
-    f = open("my_id.txt", "r")
-    id = f.read()
+    # f = open("my_id.txt", "r")
+    id = 'jesse'
     print("ID is", id)
-    f.close()
+    # f.close()
 
     if id == 'NONAME\n':
         print("ERROR: You must change your name in `my_id.txt`!")
