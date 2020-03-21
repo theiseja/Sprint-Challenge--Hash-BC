@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
     # Load or create ID
     # f = open("my_id.txt", "r")
-    id = 'jesse'
+    id = 'JesseTheisen' # temp fix caused program to not run with an error pointing to my_id.txt not existing when it does
     print("ID is", id)
     # f.close()
 
