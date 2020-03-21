@@ -24,7 +24,11 @@ def proof_of_work(last_proof):
 
     print("Searching for next proof")
     proof = 0
+    last_hash = f'{last_proof}'.encode()
+    hash_obj = hashlib.sha256(last_hash).hexdigest()
     #  TODO: Your code here
+    while valid_proof(hash_obj, proof) is False:
+        proof += 100
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -40,7 +44,14 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    pass
+    
+    hashed_proof = last_hash[-6:]
+    guess = f'{proof}'.encode()
+    guess_hash = hashlib.sha256(guess).hexdigest()
+    if guess_hash[:6] == hashed_proof:
+        print(guess_hash)
+        return True
+    return False
 
 
 if __name__ == '__main__':
@@ -69,7 +80,7 @@ if __name__ == '__main__':
         new_proof = proof_of_work(data.get('proof'))
 
         post_data = {"proof": new_proof,
-                     "id": id}
+                    "id": id}
 
         r = requests.post(url=node + "/mine", json=post_data)
         data = r.json()
